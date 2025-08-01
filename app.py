@@ -76,7 +76,7 @@ app.layout = html.Div([
     Input('dropdown-selection', 'value'),
 )
 
-def update_graph(value, data_value, time_value):
+def update_graph(value, data_value):
     """Update the graph based on the selected value."""
     dff = pd.read_csv("sims/tfc_single"+str(data_value)+"_simout.csv")
     fig = go.Figure()
@@ -260,7 +260,7 @@ def get_custom_figure(data_value):
         b_frame_axes += create_arrow(origin, np.array([y_hist[-1,0], y_hist[-1,1], y_hist[-1,2]]), color='lime', name='Y_body')
         b_frame_axes += create_arrow(origin, np.array([z_hist[-1,0], z_hist[-1,1], z_hist[-1,2]]), color='cyan', name='Z_body')
         return trace_x, trace_y, trace_z, markers, b_frame_axes
-    df = pd.read_csv("Simulation/tfc_single"+str(data_value)+"_simout.csv")
+    df = pd.read_csv("sims/tfc_single"+str(data_value)+"_simout.csv")
     [trace_x, trace_y, trace_z, markers, b_frame_axes] = readQuat_computeError(df)
 
     #--- Final plot layout
