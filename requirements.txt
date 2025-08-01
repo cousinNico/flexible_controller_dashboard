@@ -1,0 +1,5 @@
+dash==3.1.1
+numpy==1.26.2
+pandas==2.1.4
+plotly==6.2.0
+scipy==1.11.4
