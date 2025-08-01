@@ -66,14 +66,6 @@ app.layout = html.Div([
         dcc.Graph(id='graph-content', style={'width': '50%', 'display': 'inline-block'}),
         dcc.Graph(id='custom-graph-content', style={'width': '50%', 'display': 'inline-block'})
     ], style={'display': 'flex', 'width': '100%'}),
-    html.Div([
-        dcc.Slider(
-            df['Time'].min(),
-            df['Time'].max(),
-            step=1,
-            value=df['Time'].min(),
-            id='time-slider'
-        )])
 ])
 
 #TODO: change the slider to be about the tuning for ICL rather than time
@@ -82,13 +74,11 @@ app.layout = html.Div([
     Output('graph-content', 'figure'),
     Input('radio-selection', 'value'),
     Input('dropdown-selection', 'value'),
-    Input('time-slider', 'value'),
 )
 
 def update_graph(value, data_value, time_value):
     """Update the graph based on the selected value."""
-    df = pd.read_csv("sims/tfc_single"+str(data_value)+"_simout.csv")
-    dff = df[df['Time'] <= time_value]
+    dff = pd.read_csv("sims/tfc_single"+str(data_value)+"_simout.csv")
     fig = go.Figure()
     fig.update_layout(
         title=f"Simulation Data for {value}",
